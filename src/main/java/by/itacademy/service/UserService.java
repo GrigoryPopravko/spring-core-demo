@@ -1,8 +1,8 @@
-package by.itacademy;
+package by.itacademy.service;
 
 import java.util.List;
 
 public interface UserService {
 
-    void getAll();
+    List<String> getAll();
 }

@@ -1,28 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
-        <property name="location" value="application.properties"/>
-    </bean>
-    <bean class="by.itacademy.post.CustomBeanFactoryPostProcessor"/>
-
-    <bean class="by.itacademy.ConnectionPool">
-        <constructor-arg name="driver" value="${db.driver}"/>
-        <constructor-arg name="poolSize" value="${db.poolSize}"/>
-        <constructor-arg name="url" value="${db.url}"/>
-        <constructor-arg name="username" value="${db.username}"/>
-        <constructor-arg name="password" value="${db.password}"/>
-    </bean>
-
-    <bean id="exalibur" class="by.itacademy.Sword" factory-method="goldenSword" scope="prototype">
-        <constructor-arg name="damage" value="50"/>
-        <constructor-arg name="price" value="100"/>
-    </bean>
-
-    <bean class="by.itacademy.UserServiceImpl"/>
-
-    <bean class="by.itacademy.post.CustomBeanPostProcessor"/>
+    <context:annotation-config/>
+    <context:property-placeholder location="application.properties"/>
+    <context:component-scan base-package="by.itacademy"/>
 
 </beans>
