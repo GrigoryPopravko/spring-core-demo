@@ -2,7 +2,7 @@ package by.itacademy;
 
 public class Sword implements Weapon {
 
-    private final Integer damage;
+    private Integer damage;
     private final Integer price;
     private final String material;
 
@@ -26,11 +26,16 @@ public class Sword implements Weapon {
     }
 
     @Override
+    public Integer getPrice() {
+        return price;
+    }
+
+    @Override
     public String toString() {
         return "Sword{" +
-               "damage=" + damage +
-               ", price=" + price +
-               ", material='" + material + '\'' +
-               '}';
+                "damage=" + damage +
+                ", price=" + price +
+                ", material='" + material +
+                '}';
     }
 }

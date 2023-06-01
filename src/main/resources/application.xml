@@ -3,54 +3,26 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="exalibur" class="by.itacademy.Sword" factory-method="goldenSword">
+    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="location" value="application.properties"/>
+    </bean>
+    <bean class="by.itacademy.post.CustomBeanFactoryPostProcessor"/>
+
+    <bean class="by.itacademy.ConnectionPool">
+        <constructor-arg name="driver" value="${db.driver}"/>
+        <constructor-arg name="poolSize" value="${db.poolSize}"/>
+        <constructor-arg name="url" value="${db.url}"/>
+        <constructor-arg name="username" value="${db.username}"/>
+        <constructor-arg name="password" value="${db.password}"/>
+    </bean>
+
+    <bean id="exalibur" class="by.itacademy.Sword" factory-method="goldenSword" scope="prototype">
         <constructor-arg name="damage" value="50"/>
         <constructor-arg name="price" value="100"/>
     </bean>
-    <bean id="usual" class="by.itacademy.Sword" factory-method="bronzeSword">
-        <constructor-arg name="damage" value="15"/>
-        <constructor-arg name="price" value="20"/>
-    </bean>
 
-    <bean id="armour" class="by.itacademy.Armour">
-        <constructor-arg name="material" value="bronze"/>
-        <constructor-arg name="defence" value="30"/>
-    </bean>
+    <bean class="by.itacademy.UserServiceImpl"/>
 
-    <bean id="leatherJacket" class="by.itacademy.Armour">
-        <constructor-arg name="material" value="leather"/>
-        <constructor-arg name="defence" value="5"/>
-    </bean>
-
-    <bean id="barbarian" class="by.itacademy.Warrior">
-        <constructor-arg name="name" value="Barbarian"/>
-        <constructor-arg name="weapons">
-            <list>
-                <ref bean="exalibur"/>
-                <ref bean="usual"/>
-            </list>
-        </constructor-arg>
-        <constructor-arg name="armour" ref="armour"/>
-    </bean>
-
-    <bean id="poisonedArrow" class="by.itacademy.Arrow" scope="prototype">
-        <constructor-arg name="damage" value="20"/>
-    </bean>
-
-    <bean id="simpleBow" class="by.itacademy.Bow">
-        <constructor-arg name="arrow" ref="poisonedArrow"/>
-    </bean>
-
-    <bean id="legolas" class="by.itacademy.Archer">
-        <constructor-arg name="name" value="Legolas"/>
-        <constructor-arg name="armour" ref="armour"/>
-        <constructor-arg name="weapon" ref="simpleBow"/>
-        <property name="squad" ref="squad"/>
-    </bean>
-
-    <bean id="squad" class="by.itacademy.Squad">
-        <property name="archer" ref="legolas"/>
-        <property name="warrior" ref="barbarian"/>
-    </bean>
+    <bean class="by.itacademy.post.CustomBeanPostProcessor"/>
 
 </beans>
