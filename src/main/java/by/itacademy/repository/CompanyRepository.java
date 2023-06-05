@@ -1,14 +1,12 @@
 package by.itacademy.repository;
 
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component
-@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class CompanyRepository implements Repository {
+@Repository
+public class CompanyRepository implements MyRepository {
 
     @Override
     public List<String> findAll() {

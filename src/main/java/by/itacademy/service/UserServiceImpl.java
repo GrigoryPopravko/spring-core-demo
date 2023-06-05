@@ -1,19 +1,20 @@
 package by.itacademy.service;
 
-import by.itacademy.repository.Repository;
+import by.itacademy.repository.MyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component("simpleUserService")
+@Service("simpleUserService")
 public class UserServiceImpl implements UserService {
 
-    private final Repository companyRepository;
-    private final List<Repository> repositories;
+    private final MyRepository companyRepository;
+    private final List<MyRepository> repositories;
 
     @Autowired
-    public UserServiceImpl(Repository companyRepository, List<Repository> repositories) {
+    public UserServiceImpl(MyRepository companyRepository, List<MyRepository> repositories) {
         this.companyRepository = companyRepository;
         this.repositories = repositories;
     }

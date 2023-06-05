@@ -1,10 +1,10 @@
 package by.itacademy.service;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class FacebookUserServiceImpl implements UserService {
     @Override
     public List<String> getAll() {

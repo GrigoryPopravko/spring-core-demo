@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class UserRepository implements Repository {
+public class UserRepository implements MyRepository {
 
     private ConnectionPool connectionPool;
 
